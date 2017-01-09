@@ -16,7 +16,7 @@ var certificate = process.env.NODE_CRT;
 console.log('key');
 console.log(privateKey);
 console.log('crt');
-console.log(cetificate);
+console.log(certificate);
 
 var credentials = {key: privateKey, cert: certificate};
 
