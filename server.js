@@ -4,11 +4,16 @@ var express = require('express'),
     app     = express(),
     eps     = require('ejs'),
     morgan  = require('morgan');
+var https = require('https');
     
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+
+var privateKey  = process.env.NODE_KEY;
+var certificate = process.env.NODE_CRT;
+var credentials = {key: privateKey, cert: certificate};
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -101,7 +106,10 @@ initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
 
-app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(port,ip);
+//app.listen(port, ip);
+//console.log('Server running on http://%s:%s', ip, port);
+console.log('Server running on https://%s:%s', ip, port);
 
 module.exports = app ;
