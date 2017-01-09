@@ -13,6 +13,11 @@ app.use(morgan('combined'))
 
 var privateKey  = process.env.NODE_KEY;
 var certificate = process.env.NODE_CRT;
+console.log('key');
+console.log(privateKey);
+console.log('crt');
+console.log(cetificate);
+
 var credentials = {key: privateKey, cert: certificate};
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
