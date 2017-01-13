@@ -111,10 +111,7 @@ initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
 
-var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(port,ip);
-//app.listen(port, ip);
-//console.log('Server running on http://%s:%s', ip, port);
-console.log('Server running on https://%s:%s', ip, port);
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
