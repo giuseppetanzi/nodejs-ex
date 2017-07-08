@@ -49,6 +49,7 @@ var db = null,
 
 var initDb = function(callback) {
   if (mongoURL == null) return;
+  console.log('MongoURL: %s', mongoURL)
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
